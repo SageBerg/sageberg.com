@@ -18,6 +18,8 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+
+
 #profile_picture {
   border-radius: 50%;
   height: 50%;
@@ -39,4 +41,23 @@
 
 .jumbotron {
   margin-bottom: 0;
+}
+
+.tech_logo {
+  width: 50px;
+}
+
+#tech_tracking {
+  /*text-align: center;*/
+}
+
+.section_header {
+  padding-left: 64px;
+  padding-right: 64px;
+  padding-bottom: 64px;
+  text-align: center;
+}
+
+.section_title {
+  color: #0099ff;
 }

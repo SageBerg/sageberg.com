@@ -17,5 +17,39 @@
 </header>
 
 <div class="jumbotron" id="tech_tracking">
-  <h2>I built this site on May 22nd, 2016. Since then, I've been tracking the techs I use.</h2>
-</div>
+
+  <div class="section_header">
+    <h2 class="section_title">Tools I use</h2>
+    <p>I update this list daily to encourage myself to explore new technologies.</p>
+  </div>
+
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Logo</th>
+          <th>Tool</th>
+          <th><%= "Number of days in which I used this tech in the last " +
+                 ((DateTime.now - DateTime.new(2016,5,22)).to_i + 1).to_s + " days"%></th>
+        </tr>
+      <thead>
+      <tbody>
+        <% @techs = Tech.all.order(:name) %>
+        <% @techs.each do |tech| %>
+          <tr>
+            <td>
+              <%= image_tag( tech.image_ref,
+                             :class => "tech_logo") %>
+            </td>
+            <td>
+              <%= tech.name %>
+            </td>
+            <td>
+              <%= tech.times_used.to_s %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div> <!-- end container -->
+</div> <!-- end jumbotron -->
