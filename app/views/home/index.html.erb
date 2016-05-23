@@ -46,10 +46,13 @@
         <% @tech_ids_to_uses = {} %>
 
         <% @uses.each do |use| %>
+          <% date = Date.new(use.created_at.year,
+                             use.created_at.month,
+                             use.created_at.day) %>
           <% if @tech_ids_to_uses[use.tech_id] == nil %>
-            <% @tech_ids_to_uses[use.tech_id] = Set.new [use.created_at] %>
+            <% @tech_ids_to_uses[use.tech_id] = Set.new [date] %>
           <% else %>
-            <% @tech_ids_to_uses[use.tech_id].add(use.created_at) %>
+            <% @tech_ids_to_uses[use.tech_id].add(date) %>
           <% end %>
         <% end %>
 
@@ -70,19 +73,25 @@
                 <% for i in 1..Tech.box_days %>
 
                   <!-- TODO: turn into a partial and refactor -->
-                  <% t = Time.new() %>
+                  <% t = Date.new() %>
                   <% begin %>
-                     <% day = Time.new(t.year,t.month,t.day - Tech.box_days + i) %>
+                     <% day = Date.new(t.year,t.month,t.day - Tech.box_days + i) %>
                   <% rescue %>
                      <% begin %>
-                       <% day = Time.new(t.year,t.month - 1,t.day + i) %>
+                       <% day = Date.new(t.year,t.month - 1,t.day + i) %>
                      <% rescue %>
-                       <% day = Time.new(t.year - 1,12,t.day + i) %>
+                       <% day = Date.new(t.year - 1,12,t.day + i) %>
                      <% end %>
                   <% end %>
 
                   <% unless @tech_ids_to_uses[tech.id] == nil %>
-                    <% @tech_ids_to_uses[tech.id].each do |current_use| %>
+                      <% @tech_ids_to_uses[tech.id].each do |item| %>
+                      <p><%= item %></p>
+
+                      <% end %>
+
+                                            <p> <%= day %> </p>
+                    <% if @tech_ids_to_uses[tech.id].include?(day) %>
                       <% if (Date.new - current_use.to_date).to_i < 31 %>
                         <div class="GitHub_style_box" style="background-color: #0099ff;"></div>
                       <% end %>
