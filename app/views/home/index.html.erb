@@ -20,7 +20,8 @@
 
   <div class="section_header">
     <h2 class="section_title">Tools I use</h2>
-    <p>I update this list daily to encourage myself to explore new technologies.</p>
+    <p>I update this list daily to encourage myself to explore new technologies.
+    </p>
   </div>
 
   <div class="container">
@@ -29,23 +30,53 @@
         <tr>
           <th>Logo</th>
           <th>Tool</th>
-          <th><%= "Number of days in which I used this tech in the last " +
-                 ((DateTime.now - DateTime.new(2016,5,22)).to_i + 1).to_s + " days"%></th>
+          <th><%= "Times used in the last " +
+                 ((DateTime.now - DateTime.new(2016,5,22)).to_i + 1).to_s +
+                 " days"%>
+          </th>
+          <th>Times used in the last <%= Tech.box_days %> days</th>
         </tr>
       <thead>
       <tbody>
         <% @techs = Tech.all.order(:name) %>
+
+        <% @uses = Use.all %>
+        <% @tech_ids_to_uses = {} %>
+
+        <% @uses.each do |use| %>
+          <% if @tech_ids_to_uses[use.tech_id] == nil %>
+            <% @tech_ids_to_uses[use.tech_id] = [use.created_at] %>
+          <% else %>
+            <% @tech_ids_to_uses[use.tech_id].push(use.created_at) %>
+          <% end %>
+        <% end %>
+
         <% @techs.each do |tech| %>
           <tr>
             <td>
               <%= image_tag( tech.image_ref,
-                             :class => "tech_logo") %>
+                             :class => "tech_logo" ) %>
             </td>
             <td>
               <%= tech.name %>
             </td>
             <td>
               <%= tech.times_used.to_s %>
+            </td>
+            <td>
+              <div class="GitHub_style_boxes">
+                <% for i in 1..Tech.box_days %>
+                <% unless @tech_ids_to_uses[tech.id] == nil%>
+                  <% @tech_ids_to_uses[tech.id].each do |current_use| %>
+                    <% if (Date.new - current_use.to_date).to_i < 31 %>
+                      <div class="GitHub_style_box" style="background-color: #0099ff;""></div>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <div class="GitHub_style_box"></div>
+                <% end %> <!-- end unless -->
+                <% end %> <!-- end loop -->
+              </div> <!-- end GitHub style boxes -->
             </td>
           </tr>
         <% end %>
