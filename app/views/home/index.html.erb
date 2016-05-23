@@ -1,3 +1,5 @@
+<% require 'set' %>
+
 <header class="jumbotron" id="intro_section">
   <div class="container-fluid">
     <div class="row">
@@ -30,11 +32,11 @@
         <tr>
           <th>Logo</th>
           <th>Tool</th>
-          <th><%= "Times used in the last " +
+          <th><%= "Days used in the last " +
                  ((DateTime.now - DateTime.new(2016,5,22)).to_i + 1).to_s +
                  " days"%>
           </th>
-          <th>Times used in the last <%= Tech.box_days %> days</th>
+          <th>Days used in the last <%= Tech.box_days %> days</th>
         </tr>
       <thead>
       <tbody>
@@ -45,9 +47,9 @@
 
         <% @uses.each do |use| %>
           <% if @tech_ids_to_uses[use.tech_id] == nil %>
-            <% @tech_ids_to_uses[use.tech_id] = [use.created_at] %>
+            <% @tech_ids_to_uses[use.tech_id] = Set.new [use.created_at] %>
           <% else %>
-            <% @tech_ids_to_uses[use.tech_id].push(use.created_at) %>
+            <% @tech_ids_to_uses[use.tech_id].add(use.created_at) %>
           <% end %>
         <% end %>
 
@@ -66,15 +68,30 @@
             <td>
               <div class="GitHub_style_boxes">
                 <% for i in 1..Tech.box_days %>
-                <% unless @tech_ids_to_uses[tech.id] == nil%>
-                  <% @tech_ids_to_uses[tech.id].each do |current_use| %>
-                    <% if (Date.new - current_use.to_date).to_i < 31 %>
-                      <div class="GitHub_style_box" style="background-color: #0099ff;""></div>
-                    <% end %>
+
+                  <!-- TODO: turn into a partial and refactor -->
+                  <% t = Time.new() %>
+                  <% begin %>
+                     <% day = Time.new(t.year,t.month,t.day - Tech.box_days + i) %>
+                  <% rescue %>
+                     <% begin %>
+                       <% day = Time.new(t.year,t.month - 1,t.day + i) %>
+                     <% rescue %>
+                       <% day = Time.new(t.year - 1,12,t.day + i) %>
+                     <% end %>
                   <% end %>
-                <% else %>
-                  <div class="GitHub_style_box"></div>
-                <% end %> <!-- end unless -->
+
+                  <% unless @tech_ids_to_uses[tech.id] == nil %>
+                    <% @tech_ids_to_uses[tech.id].each do |current_use| %>
+                      <% if (Date.new - current_use.to_date).to_i < 31 %>
+                        <div class="GitHub_style_box" style="background-color: #0099ff;"></div>
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <div class="GitHub_style_box" title="
+                         <%= day.strftime("%d %B %Y") %>">
+                    </div>
+                  <% end %> <!-- end unless -->
                 <% end %> <!-- end loop -->
               </div> <!-- end GitHub style boxes -->
             </td>
@@ -84,3 +101,10 @@
     </table>
   </div> <!-- end container -->
 </div> <!-- end jumbotron -->
+
+<script>
+  function show_date() {
+    date = new Date();
+    return date;
+  }
+</script>
