@@ -63,13 +63,16 @@
 }
 
 .checked_GitHub_style_box {
-  /* TODO figure out how to leverage SCSS to not repate this code */
+  @extend .GitHub_style_box;
   background-color: #0099ff;
-  height: 16px;
-  width: 16px;
-  font-size: 2;
-  margin: 1px;
-  float: left;
+  &:hover {
+    background-color: #0088ee;
+  }
+}
+
+.blank_GitHub_style_box {
+  @extend .GitHub_style_box;
+  background-color: #ddd;
   &:hover {
     background-color: #ccc;
   }
@@ -78,11 +81,6 @@
 .GitHub_style_box {
   height: 16px;
   width: 16px;
-  background-color: #ddd;
-  font-size: 2;
   margin: 1px;
-  float: left;
-  &:hover {
-    background-color: #ccc;
-  }
+  float: right;
 }
