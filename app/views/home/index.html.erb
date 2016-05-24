@@ -46,13 +46,13 @@
         <% @tech_ids_to_uses = {} %>
 
         <% @uses.each do |use| %>
-          <% date = Date.new(use.created_at.year,
-                             use.created_at.month,
-                             use.created_at.day) %>
+          <% date_string = use.created_at.year.to_s + ", " +
+                           use.created_at.month.to_s + ", " +
+                           use.created_at.day.to_s %></p>
           <% if @tech_ids_to_uses[use.tech_id] == nil %>
-            <% @tech_ids_to_uses[use.tech_id] = Set.new [date] %>
+            <% @tech_ids_to_uses[use.tech_id] = Set.new [date_string] %>
           <% else %>
-            <% @tech_ids_to_uses[use.tech_id].add(date) %>
+            <% @tech_ids_to_uses[use.tech_id].add(date_string) %>
           <% end %>
         <% end %>
 
@@ -70,36 +70,19 @@
             </td>
             <td>
               <div class="GitHub_style_boxes">
-                <% for i in 1..Tech.box_days %>
+                <% for i in 0..Tech.box_days %>
 
-                  <!-- TODO: turn into a partial and refactor -->
-                  <% t = Date.new() %>
-                  <% begin %>
-                     <% day = Date.new(t.year,t.month,t.day - Tech.box_days + i) %>
-                  <% rescue %>
-                     <% begin %>
-                       <% day = Date.new(t.year,t.month - 1,t.day + i) %>
-                     <% rescue %>
-                       <% day = Date.new(t.year - 1,12,t.day + i) %>
-                     <% end %>
-                  <% end %>
+                  <% day = Date.today - i %>
+                  <% day_string = day.year.to_s + ", " +
+                                  day.month.to_s + ", " +
+                                  day.day.to_s %>
 
-                  <% unless @tech_ids_to_uses[tech.id] == nil %>
-                      <% @tech_ids_to_uses[tech.id].each do |item| %>
-                      <p><%= item %></p>
-
-                      <% end %>
-
-                                            <p> <%= day %> </p>
-                    <% if @tech_ids_to_uses[tech.id].include?(day) %>
-                      <% if (Date.new - current_use.to_date).to_i < 31 %>
-                        <div class="GitHub_style_box" style="background-color: #0099ff;"></div>
-                      <% end %>
-                    <% end %>
+                  <% if @tech_ids_to_uses[tech.id] != nil &&
+                    @tech_ids_to_uses[tech.id].include?(day_string) %>
+                    <!-- TODO only use dates within last Tech.box_days days -->
+                    <div class="checked_GitHub_style_box"></div>
                   <% else %>
-                    <div class="GitHub_style_box" title="
-                         <%= day.strftime("%d %B %Y") %>">
-                    </div>
+                    <div class="GitHub_style_box" title=""></div>
                   <% end %> <!-- end unless -->
                 <% end %> <!-- end loop -->
               </div> <!-- end GitHub style boxes -->
