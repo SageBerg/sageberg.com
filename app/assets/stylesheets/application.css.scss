@@ -91,3 +91,25 @@ tr {
 .GitHub_style_boxes {
   float: left;
 }
+
+#colors_game {
+  background-color:#282C34;
+}
+
+.dot {
+  height: 200px;
+  width: 200px;
+  border-radius: 100px;
+  border-color: #fff;
+  border-width: 5px;
+  border-style: solid;
+}
+
+#colored_dot {
+  @extend .dot;
+}
+
+#guess_dot {
+  @extend .dot;
+  background-color: #fff;
+}

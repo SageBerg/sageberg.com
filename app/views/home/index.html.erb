@@ -119,3 +119,41 @@
   </span>
   </div> <!-- end container -->
 </div> <!-- end jumbotron -->
+
+<script>
+  function random_color() {
+    var color_string = "#"
+    for (var i = 0; i < 6; i++) {
+      color_string += Math.floor(Math.random() * 16).toString(16)
+    }
+    return color_string
+  }
+
+  function guess_color() {
+    guess = document.getElementById("guess_field").value
+    console.log("Your guess: " + guess)
+    console.log("Actual color: " + color)
+    start_color_game()
+  }
+
+  function start_color_game() {
+    color = random_color()
+    document.getElementById("colored_dot").style.backgroundColor = color
+  }
+</script>
+
+<div class="jumbotron" id="colors_game">
+  <div class="section_header">
+    <h2 class="section_title">Color Identifier Game</h2>
+  </div>
+  <div class="container-fluid" id="colored_dot">
+  </div>
+  <div class="container-fluid" id="guess_dot">
+  </div>
+  <button onclick="guess_color()">Submit</button>
+  <input id="guess_field"></input>
+</div>
+
+<script>
+  start_color_game()
+</script>
