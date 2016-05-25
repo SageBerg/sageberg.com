@@ -18,7 +18,9 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
-
+tr {
+  height: 64px;
+}
 
 #profile_picture {
   border-radius: 50%;
@@ -82,5 +84,10 @@
   height: 16px;
   width: 16px;
   margin: 1px;
-  float: right;
+  display: inline-block;
+  float: right;;
+}
+
+.GitHub_style_boxes {
+  float: left;
 }
