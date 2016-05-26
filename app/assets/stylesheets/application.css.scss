@@ -113,3 +113,25 @@ tr {
   @extend .dot;
   background-color: #fff;
 }
+
+.color_game_header {
+  color: white;
+}
+
+.color_game_button {
+  margin: 8px;
+  width: 256px;
+}
+
+#actual_color {
+  text-align: center;
+}
+
+#your_guess {
+  text-align: center;
+}
+
+#color_game_inputs {
+  margin: 32px;
+  text-align: center;
+}

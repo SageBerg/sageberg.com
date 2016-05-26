@@ -120,40 +120,87 @@
   </div> <!-- end container -->
 </div> <!-- end jumbotron -->
 
-<script>
-  function random_color() {
-    var color_string = "#"
-    for (var i = 0; i < 6; i++) {
-      color_string += Math.floor(Math.random() * 16).toString(16)
-    }
-    return color_string
-  }
-
-  function guess_color() {
-    guess = document.getElementById("guess_field").value
-    console.log("Your guess: " + guess)
-    console.log("Actual color: " + color)
-    start_color_game()
-  }
-
-  function start_color_game() {
-    color = random_color()
-    document.getElementById("colored_dot").style.backgroundColor = color
-  }
-</script>
 
 <div class="jumbotron" id="colors_game">
   <div class="section_header">
     <h2 class="section_title">Color Identifier Game</h2>
   </div>
-  <div class="container-fluid" id="colored_dot">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-3">
+        <h3 class="color_game_header" id="actual_color">Actual color: #??????</h3>
+        <div class="container-fluid" id="colored_dot">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h3 class="color_game_header" id="your_guess">Your gusss</h3>
+        <div class="container-fluid" id="guess_dot">
+        </div>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
   </div>
-  <div class="container-fluid" id="guess_dot">
+
+  <div id="color_game_inputs">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-default color_game_button" onclick="guess_color()">Submit Color Guess</button>
+      </div>
+      <div class="col-md-2">
+        <input id="guess_field" class="color_game_button" placeholder="Color Guess (e.g. 3d66e9)"></input>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-default color_game_button" onclick="start_color_game()">New Game</button>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
   </div>
-  <button onclick="guess_color()">Submit</button>
-  <input id="guess_field"></input>
 </div>
 
 <script>
+  function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+  }
+
+  function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+  }
+
+  function random_color() {
+    color_string = "#"
+    for (var i = 0; i < 6; i++) {
+      color_string += Math.floor(Math.random() * 16).toString(16);
+    }
+    return color_string;
+  }
+
+  function guess_color() {
+    actual_color = document.getElementById("colored_dot").style.backgroundColor;
+    guess = "#" + document.getElementById("guess_field").value;
+    document.getElementById("guess_dot").style.backgroundColor = guess;
+    rgb = actual_color.replace(/[^\d,]/g, '').split(',');
+    r = parseInt(rgb[0])
+    g = parseInt(rgb[1])
+    b = parseInt(rgb[2])
+    document.getElementById("actual_color").innerHTML = "Actual color: " + rgbToHex(r,g,b);
+    document.getElementById("your_guess").innerHTML = "Your guess: " + guess;
+    //start_color_game();
+  }
+
+  function start_color_game() {
+    document.getElementById("guess_dot").style.backgroundColor = "#fff";
+    document.getElementById("colored_dot").style.backgroundColor = random_color();
+    document.getElementById("guess_field").value = "";
+    document.getElementById("actual_color").innerHTML = "Actual color: #??????";
+    document.getElementById("your_guess").innerHTML = "Your guess:";
+  }
+
   start_color_game()
 </script>
