@@ -18,8 +18,18 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+$my_blue: #0099ff;
+
 tr {
   height: 64px;
+}
+
+.site_nav_button {
+
+}
+
+.jumbotron {
+  background-color: #fff;
 }
 
 #profile_picture {
@@ -134,4 +144,43 @@ tr {
 #color_game_inputs {
   margin: 32px;
   text-align: center;
+}
+
+#tShapedDeveloper {
+
+}
+
+.tEnd {
+  height: 150px;
+  line-height: 150px;
+  display: inline-block;
+  white-space: nowrap;
+  text-align: center;
+  color: #fff;
+}
+
+#full_stack {
+  @extend .tEnd;
+  background-color: $my_blue;
+  height: 700px;
+}
+
+#ops_box {
+  @extend .tEnd;
+  background-color: #1B998B;
+}
+
+#security_box {
+  @extend .tEnd;
+  background-color: #2D3047;
+}
+
+#data_box {
+  @extend .tEnd;
+  background-color: #FF9B71;
+}
+
+#ux_box {
+  @extend .tEnd;
+  background-color: #E84855;
 }

@@ -14,6 +14,10 @@
         <h1>Sage Berg<h1>
         <p>I like coding, running and self-tracking.</p>
       </div>
+        <button class="site_nav_button" onclick="jumpTo('tech_tracking')">Tools I Use</button>
+        <button class="site_nav_button" onclick="jumpTo('colors_game')">Color Guessing Game</button>
+        <button class="site_nav_button" onclick="jumpTo('tShapedDeveloper')">T-Shaped Developer</button>
+
     </div> <!-- end row -->
   </div> <!-- end container -->
 </header>
@@ -120,48 +124,62 @@
   </div> <!-- end container -->
 </div> <!-- end jumbotron -->
 
-
 <div class="jumbotron" id="colors_game">
   <div class="section_header">
     <h2 class="section_title">Color Guessing Game</h2>
   </div>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-3">
-        <h3 class="color_game_header" id="actual_color">Actual color: #??????</h3>
-        <div class="container-fluid" id="colored_dot">
-        </div>
-      </div>
-      <div class="col-md-3">
-        <h3 class="color_game_header" id="your_guess">Your gusss</h3>
-        <div class="container-fluid" id="guess_dot">
-        </div>
-      </div>
-      <div class="col-md-3">
-      </div>
-    </div>
-  </div>
+
+  <h3 class="color_game_header" id="actual_color">Actual color: #??????</h3>
+  <div class="container-fluid" id="colored_dot"></div>
+
+  <h3 class="color_game_header" id="your_guess">Your gusss</h3>
+  <div class="container-fluid" id="guess_dot"></div>
 
   <div id="color_game_inputs">
-    <div class="row">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-2">
-        <button type="button" class="btn btn-default color_game_button" onclick="guess_color()">Submit Color Guess</button>
-      </div>
-      <div class="col-md-2">
-        <input id="guess_field" class="color_game_button" placeholder="Color Guess (e.g. 3d66e9)"></input>
-      </div>
-      <div class="col-md-2">
-        <button type="button" class="btn btn-default color_game_button" onclick="start_color_game()">New Game</button>
-      </div>
-      <div class="col-md-3">
-      </div>
-    </div>
+    <button type="button" class="btn btn-default color_game_button" onclick="guess_color()">Submit Color Guess</button>
+    <input id="guess_field" class="color_game_button" placeholder="Color Guess (e.g. 3d66e9)"></input>
+    <button type="button" class="btn btn-default color_game_button" onclick="start_color_game()">New Game</button>
   </div>
 </div>
+
+<div class="jumbotron" id="tShapedDeveloper">
+  <div class="section_header">
+    <h2 class="section_title">I'm working on being a T-shaped developer.</h2>
+  </div>
+  <div class="container-fluid">
+    <span class="text-nowrap">
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-1" id="ops_box">
+          Operations
+        </div>
+        <div class="col-md-1" id="security_box">
+          Information Security
+        </div>
+        <div class="col-md-2" id="full_stack">
+          Software Development
+        </div>
+        <div class="col-md-1" id="data_box">
+          Data
+        </div>
+        <div class="col-md-1" id="ux_box">
+          User Experience
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<script>
+  function jumpTo(id) {
+    //document.getElementById('intro_section').scrollIntoView();
+    window.location.hash = "#" + id;
+    return false;
+  }
+</script>
 
 <script>
   function componentToHex(c) {
