@@ -123,7 +123,7 @@
 
 <div class="jumbotron" id="colors_game">
   <div class="section_header">
-    <h2 class="section_title">Color Identifier Game</h2>
+    <h2 class="section_title">Color Guessing Game</h2>
   </div>
   <div class="container-fluid">
     <div class="row">
@@ -189,7 +189,7 @@
     r = parseInt(rgb[0])
     g = parseInt(rgb[1])
     b = parseInt(rgb[2])
-    document.getElementById("actual_color").innerHTML = "Actual color: " + rgbToHex(r,g,b);
+    document.getElementById("actual_color").innerHTML = "Color: " + rgbToHex(r,g,b);
     document.getElementById("your_guess").innerHTML = "Your guess: " + guess;
     //start_color_game();
   }
@@ -198,7 +198,7 @@
     document.getElementById("guess_dot").style.backgroundColor = "#fff";
     document.getElementById("colored_dot").style.backgroundColor = random_color();
     document.getElementById("guess_field").value = "";
-    document.getElementById("actual_color").innerHTML = "Actual color: #??????";
+    document.getElementById("actual_color").innerHTML = "Color: #??????";
     document.getElementById("your_guess").innerHTML = "Your guess:";
   }
 
