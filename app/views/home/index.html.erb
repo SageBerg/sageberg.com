@@ -1,8 +1,10 @@
 <% require 'set' %>
 
-<header class="jumbotron" id="intro_section">
+<div class="jumbotron" id="intro_section">
   <div class="container-fluid">
     <div class="row">
+      <div class="col-md-3">
+      </div>
       <div class="col-md-3" id="profile_picture_box">
         <%= image_tag( "sage_berg_profile_picture.jpg",
                        :id => "profile_picture",
@@ -10,17 +12,23 @@
                        :class => "img-responsive",
                        :class => "center-block" ) %>
       </div>
-      <div class="col-md-9" id="about_me">
+      <div class="col-md-3" id="tagline">
         <h1>Sage Berg<h1>
         <p>I like coding, running and self-tracking.</p>
       </div>
-        <button class="site_nav_button" onclick="jumpTo('tech_tracking')">Tools I Use</button>
-        <button class="site_nav_button" onclick="jumpTo('colors_game')">Color Guessing Game</button>
-        <button class="site_nav_button" onclick="jumpTo('tShapedDeveloper')">T-Shaped Developer</button>
-
+      <div class="col-md-3">
+      </div>
     </div> <!-- end row -->
   </div> <!-- end container -->
+</div>
+
+<header >
+  <button class="site_nav_button" onclick="jumpTo('tech_tracking')">Tools I Use</button>
+  <button class="site_nav_button" onclick="jumpTo('tShapedDeveloper')">T-Shaped Developer</button>
+  <button class="site_nav_button" onclick="jumpTo('colors_game')">Color Guessing Game</button>
+  <button class="site_nav_button" onclick="jumpTo('about_me')">About Me</button>
 </header>
+
 
 <div class="jumbotron" id="tech_tracking">
 
@@ -124,6 +132,8 @@
   </div> <!-- end container -->
 </div> <!-- end jumbotron -->
 
+<%= render file: "~/sageberg.com/app/views/_t_shaped_developer" %>
+
 <div class="jumbotron" id="colors_game">
   <div class="section_header">
     <h2 class="section_title">Color Guessing Game</h2>
@@ -142,36 +152,7 @@
   </div>
 </div>
 
-<div class="jumbotron" id="tShapedDeveloper">
-  <div class="section_header">
-    <h2 class="section_title">I'm working on being a T-shaped developer.</h2>
-  </div>
-  <div class="container-fluid">
-    <span class="text-nowrap">
-      <div class="row">
-        <div class="col-md-3">
-        </div>
-        <div class="col-md-1" id="ops_box">
-          Operations
-        </div>
-        <div class="col-md-1" id="security_box">
-          Information Security
-        </div>
-        <div class="col-md-2" id="full_stack">
-          Software Development
-        </div>
-        <div class="col-md-1" id="data_box">
-          Data
-        </div>
-        <div class="col-md-1" id="ux_box">
-          User Experience
-        </div>
-        <div class="col-md-3">
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
+<%= render file: "~/sageberg.com/app/views/_about_me" %>
 
 <script>
   function jumpTo(id) {
@@ -209,7 +190,6 @@
     b = parseInt(rgb[2])
     document.getElementById("actual_color").innerHTML = "Color: " + rgbToHex(r,g,b);
     document.getElementById("your_guess").innerHTML = "Your guess: " + guess;
-    //start_color_game();
   }
 
   function start_color_game() {

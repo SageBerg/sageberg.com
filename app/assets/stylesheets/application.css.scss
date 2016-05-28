@@ -20,6 +20,10 @@
 
 $my_blue: #0099ff;
 
+header {
+  font-size: 0; //hack to remove space between inline elements
+}
+
 tr {
   height: 64px;
 }
@@ -43,8 +47,9 @@ tr {
 
 }
 
-#about_me {
+#tagline {
   color: white;
+  text-align: center;
 }
 
 #intro_section {
@@ -183,4 +188,19 @@ tr {
 #ux_box {
   @extend .tEnd;
   background-color: #E84855;
+}
+
+.site_nav_button {
+  border: 0;
+  background: none;
+  box-shadow:none;
+  border-radius: 0px;
+  background-color: #888;
+  color: #fff;
+  width: 25%;
+  height:64px;
+  font-size: 16px;
+  &:hover {
+    background-color: #777;
+  }
 }
