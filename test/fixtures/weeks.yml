@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  work_hours: 9.99
+  work_desc: MyString
+  leisure_tech_hours: 9.99
+  leisure_desc: MyString
+
+two:
+  name: MyString
+  work_hours: 9.99
+  work_desc: MyString
+  leisure_tech_hours: 9.99
+  leisure_desc: MyString
