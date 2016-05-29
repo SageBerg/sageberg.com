@@ -3,4 +3,4 @@ This is my personal website.
 It contains some data I use to track my adventures in tech, some games I've
 made, and a bit of information about my life.
 
-Feedback is always appreciated.
+Feedback is always appreciated : )
