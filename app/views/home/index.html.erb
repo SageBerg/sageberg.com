@@ -24,14 +24,19 @@
 
 <header id="site_header">
   <button class="site_nav_button" onclick="jumpTo('tech_tracking')">Tools I Use</button>
-  <button class="site_nav_button" onclick="">Extra Coding</button>
+  <button class="site_nav_button" onclick="jumpTo('tech_hours')">Tech Hours</button>
   <button class="site_nav_button" onclick="jumpTo('colors_game')">Color Guessing Game</button>
+  <button class="site_nav_button" onclick="jumpTo('other_projects')">Other Projects</button>
   <button class="site_nav_button" onclick="jumpTo('about_me')">About Me</button>
 </header>
 
 <%= render file: "~/sageberg.com/app/views/_tech_tracking" %>
 
+<%= render file: "~/sageberg.com/app/views/_tech_hours" %>
+
 <%= render file: "~/sageberg.com/app/views/_colors_game" %>
+
+<%= render file: "~/sageberg.com/app/views/_other_projects" %>
 
 <%= render file: "~/sageberg.com/app/views/_about_me" %>
 

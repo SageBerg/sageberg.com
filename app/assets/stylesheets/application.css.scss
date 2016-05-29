@@ -19,13 +19,14 @@
  @import "bootstrap";
 
 $my_blue: #0099ff;
+$Atom_grey: #282C34;
 
 header {
   font-size: 0; //hack to remove space between inline elements
 }
 
 tr {
-  height: 64px;
+  height: 64px; //give table rows minimum height so most will be even
 }
 
 .site_nav_button {
@@ -34,6 +35,11 @@ tr {
 
 .jumbotron {
   background-color: #fff;
+  margin-bottom: 0;
+}
+
+.tech_logo {
+  width: 50px;
 }
 
 #profile_picture {
@@ -48,24 +54,20 @@ tr {
 }
 
 #tagline {
-  color: white;
+  color: #fff;
   text-align: center;
 }
 
 #intro_section {
-  background: #282C34;
-}
-
-.jumbotron {
-  margin-bottom: 0;
-}
-
-.tech_logo {
-  width: 50px;
+  background: $Atom_grey
 }
 
 #tech_tracking {
-  /*text-align: center;*/
+  background-color: #fff;
+}
+
+#tech_hours {
+  background: $Atom_grey
 }
 
 .section_header {
@@ -108,14 +110,13 @@ tr {
 }
 
 #colors_game {
-  background-color:#282C34;
 }
 
 .dot {
   height: 200px;
   width: 200px;
   border-radius: 100px;
-  border-color: #fff;
+  border-color: #000;
   border-width: 5px;
   border-style: solid;
 }
@@ -140,10 +141,12 @@ tr {
 
 #actual_color {
   text-align: center;
+  color: #000;
 }
 
 #your_guess {
   text-align: center;
+  color: #000;
 }
 
 #color_game_inputs {
@@ -197,7 +200,7 @@ tr {
   border-radius: 0px;
   background-color: #888;
   color: #fff;
-  width: 25%;
+  width: 20%;
   height:64px;
   font-size: 16px;
   &:hover {
@@ -210,5 +213,18 @@ tr {
 }
 
 #site_header {
-  
+
+}
+
+.white_text {
+  color: #fff;
+}
+
+.my_iframe {
+  height: 700px;
+  width: 100%;
+}
+
+#other_projects {
+  background-color: $Atom_grey;
 }
