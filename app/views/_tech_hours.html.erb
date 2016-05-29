@@ -5,49 +5,46 @@
       developer related stuff.
     </p>
   </div>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <table class="table" style="color: #fff;">
-          <% @weeks = Week.all %>
-          <thead>
+
+  <span class="text-nowrap">
+    <div class="container">
+      <table class="table" style="color: #fff;">
+        <% @weeks = Week.all %>
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Work Hours</th>
+            <th>Description</th>
+            <th>Leisure Tech Hours</th>
+            <th>Description</th>
+            <th>Total Tech Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @weeks.each do |week| %>
             <tr>
-              <th>Week</th>
-              <th>Work Hours</th>
-              <th>Description</th>
-              <th>Leisure Tech Hours</th>
-              <th>Description</th>
-              <th>Total Tech Hours</th>
+              <td>
+                <%= week.name %>
+              </td>
+              <td>
+                <%= week.work_hours %>
+              </td>
+              <td>
+                <%= week.work_desc %>
+              </td>
+              <td>
+                <%= week.leisure_tech_hours %>
+              </td>
+              <td>
+                <%= week.leisure_desc %>
+              </td>
+              <td>
+                <%= + week.work_hours + week.leisure_tech_hours %>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            <% @weeks.each do |week| %>
-              <tr>
-                <td>
-                  <%= week.name %>
-                </td>
-                <td>
-                  <%= week.work_hours %>
-                </td>
-                <td>
-                  <%= week.work_desc %>
-                </td>
-                <td>
-                  <%= week.leisure_tech_hours %>
-                </td>
-                <td>
-                  <%= week.leisure_desc %>
-                </td>
-                <td>
-                  <%= + week.work_hours + week.leisure_tech_hours %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-md-3"></div>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-  </div>
+  </span>
 </div>
