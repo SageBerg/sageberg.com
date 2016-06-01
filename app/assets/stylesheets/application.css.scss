@@ -29,56 +29,16 @@ tr {
   height: 64px; //give table rows minimum height so most will be even
 }
 
-.site_nav_button {
-
+.article {
+  color: #444;
 }
 
-.jumbotron {
-  background-color: #fff;
-  margin-bottom: 0;
-}
-
-.tech_logo {
-  width: 50px;
-}
-
-#profile_picture {
-  border-radius: 50%;
-  height: 50%;
-  width: 50%;
-  text-align: center;
-}
-
-#profile_picture_box {
-
-}
-
-#tagline {
-  color: #fff;
-  text-align: center;
-}
-
-#intro_section {
-  background: $Atom_grey
-}
-
-#tech_tracking {
-  background-color: #fff;
-}
-
-#tech_hours {
-  background: $Atom_grey
-}
-
-.section_header {
-  padding-left: 64px;
-  padding-right: 64px;
-  padding-bottom: 64px;
-  text-align: center;
-}
-
-.section_title {
-  color: #0099ff;
+.blank_GitHub_style_box {
+  @extend .GitHub_style_box;
+  background-color: #ddd;
+  &:hover {
+    background-color: #ccc;
+  }
 }
 
 .checked_GitHub_style_box {
@@ -89,12 +49,22 @@ tr {
   }
 }
 
-.blank_GitHub_style_box {
-  @extend .GitHub_style_box;
-  background-color: #ddd;
-  &:hover {
-    background-color: #ccc;
-  }
+.color_game_button {
+  margin: 8px;
+  width: 256px;
+}
+
+.color_game_header {
+  color: white;
+}
+
+.dot {
+  height: 200px;
+  width: 200px;
+  border-radius: 100px;
+  border-color: #000;
+  border-width: 5px;
+  border-style: solid;
 }
 
 .GitHub_style_box {
@@ -109,88 +79,27 @@ tr {
   float: left;
 }
 
-#colors_game {
-}
-
-.dot {
-  height: 200px;
-  width: 200px;
-  border-radius: 100px;
-  border-color: #000;
-  border-width: 5px;
-  border-style: solid;
-}
-
-#colored_dot {
-  @extend .dot;
-}
-
-#guess_dot {
-  @extend .dot;
+.jumbotron {
   background-color: #fff;
+  margin-bottom: 0;
 }
 
-.color_game_header {
-  color: white;
+.my_iframe {
+  border-radius: 10px;
+  margin-bottom: 16px;
+  height: 750px;
+  width: 100%;
 }
 
-.color_game_button {
-  margin: 8px;
-  width: 256px;
-}
-
-#actual_color {
-  text-align: center;
-  color: #000;
-}
-
-#your_guess {
-  text-align: center;
-  color: #000;
-}
-
-#color_game_inputs {
-  margin: 32px;
+.section_header {
+  padding-left: 64px;
+  padding-right: 64px;
+  padding-bottom: 64px;
   text-align: center;
 }
 
-#tShapedDeveloper {
-
-}
-
-.tEnd {
-  height: 150px;
-  line-height: 150px;
-  display: inline-block;
-  white-space: nowrap;
-  text-align: center;
-  color: #fff;
-}
-
-#full_stack {
-  @extend .tEnd;
-  background-color: $my_blue;
-  height: 700px;
-}
-
-#ops_box {
-  @extend .tEnd;
-  background-color: #1B998B;
-}
-
-#security_box {
-  @extend .tEnd;
-  background-color: #2D3047;
-}
-
-#data_box {
-  @extend .tEnd;
-  background-color: #FF9B71;
-}
-
-#ux_box {
-  @extend .tEnd;
-  background-color: #E84855;
+.section_title {
+  color: #0099ff;
 }
 
 .site_nav_button {
@@ -208,29 +117,101 @@ tr {
   }
 }
 
-.article {
-  color: #444;
+.tech_logo {
+  width: 50px;
 }
 
-#site_header {
-
+.tEnd {
+  height: 150px;
+  line-height: 150px;
+  display: inline-block;
+  white-space: nowrap;
+  text-align: center;
+  color: #fff;
 }
 
 .white_text {
   color: #fff;
 }
 
-.my_iframe {
-  border-radius: 10px;
-  margin-bottom: 16px;
-  height: 750px;
-  width: 100%;
+#actual_color {
+  text-align: center;
+  color: #000;
+}
+
+#color_game_feedback_section {
+  text-align: center;
+}
+
+#color_game_inputs {
+  margin: 32px;
+  text-align: center;
+}
+
+#colored_dot {
+  @extend .dot;
+}
+
+#data_box {
+  @extend .tEnd;
+  background-color: #FF9B71;
+}
+
+#full_stack {
+  @extend .tEnd;
+  background-color: $my_blue;
+  height: 700px;
+}
+
+#guess_dot {
+  @extend .dot;
+  background-color: #fff;
+}
+
+#intro_section {
+  background: $Atom_grey
+}
+
+#ops_box {
+  @extend .tEnd;
+  background-color: #1B998B;
 }
 
 #other_projects {
   background-color: $Atom_grey;
 }
 
-#color_game_feedback_section {
+#profile_picture {
+  border-radius: 50%;
+  height: 50%;
+  width: 50%;
   text-align: center;
+}
+
+#security_box {
+  @extend .tEnd;
+  background-color: #2D3047;
+}
+
+#tagline {
+  color: #fff;
+  text-align: center;
+}
+
+#tech_hours {
+  background: $Atom_grey
+}
+
+#tech_tracking {
+  background-color: #fff;
+}
+
+#ux_box {
+  @extend .tEnd;
+  background-color: #E84855;
+}
+
+#your_guess {
+  text-align: center;
+  color: #000;
 }
