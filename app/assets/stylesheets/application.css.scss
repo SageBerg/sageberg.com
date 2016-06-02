@@ -172,6 +172,18 @@ tr {
   background: $Atom_grey
 }
 
+#off_by_blue {
+  color: blue;
+}
+
+#off_by_green {
+  color: green;
+}
+
+#off_by_red {
+  color: red;
+}
+
 #ops_box {
   @extend .tEnd;
   background-color: #1B998B;
