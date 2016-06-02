@@ -61,12 +61,34 @@
     difference = red_diff + green_diff + blue_diff;
     document.getElementById("actual_color").innerHTML = "Color: " + rgbToHex(r,g,b);
     document.getElementById("your_guess").innerHTML = "Your guess: " + guess;
-    document.getElementById("off_by_red").innerHTML = "Your red guess was off by: " + red_diff;
-    document.getElementById("off_by_green").innerHTML = "Your green guess was off by: " + green_diff;
-    document.getElementById("off_by_blue").innerHTML = "Your blue guess was off by: " + blue_diff;
-    document.getElementById("off_by").innerHTML = "Your guess was off by: " +
-      difference + " / 765 " + "(" + Math.round((parseInt(difference) / 765) * 100, 2) + "%)";
+    document.getElementById("off_by_red").innerHTML = "Your red guess was off by " + red_diff;
+    document.getElementById("off_by_green").innerHTML = "Your green guess was off by " + green_diff;
+    document.getElementById("off_by_blue").innerHTML = "Your blue guess was off by " + blue_diff;
+    document.getElementById("off_by").innerHTML = "Your guess was off by " +
+      difference + " out of 765 " + "(" +
+      letter_grade(100 - Math.round((parseInt(difference) / 765) * 100, 2)) +
+      ")";
+  }
 
+  function letter_grade(percent) {
+    var grade = "";
+    if (percent < 60) {
+      grade += "F";
+    } else if (percent < 70) {
+      grade += "D";
+    } else if (percent < 80) {
+      grade += "C";
+    } else if (percent < 90) {
+      grade += "B";
+    } else {
+      grade += "A";
+    }
+    if ((percent % 10) < 3) {
+      grade += "-";
+    } else if ((percent % 10) > 6) {
+      grade += "+";
+    }
+    return grade;
   }
 
   function start_color_game() {
