@@ -45,8 +45,17 @@
   }
 
   function guess_color() {
+    guess = document.getElementById("guess_field").value;
+
+    if (!valid_color(guess)) {
+      clear_feedback();
+      document.getElementById("off_by_red").innerHTML =
+        "Please enter a valid color.";
+      return;
+    }
+
+    guess = "#" + guess;
     actual_color = document.getElementById("colored_dot").style.backgroundColor;
-    guess = "#" + document.getElementById("guess_field").value;
     document.getElementById("guess_dot").style.backgroundColor = guess;
     rgb = actual_color.replace(/[^\d,]/g, '').split(',');
     r = parseInt(rgb[0]);
@@ -60,7 +69,7 @@
     blue_diff = Math.abs(b - guess_b);
     difference = red_diff + green_diff + blue_diff;
     document.getElementById("actual_color").innerHTML = "Color: " + rgbToHex(r,g,b);
-    document.getElementById("your_guess").innerHTML = "Your guess: " + guess;
+    document.getElementById("your_guess").innerHTML = "Your guess: #" + guess;
     document.getElementById("off_by_red").innerHTML = "Your red guess was off by " + red_diff;
     document.getElementById("off_by_green").innerHTML = "Your green guess was off by " + green_diff;
     document.getElementById("off_by_blue").innerHTML = "Your blue guess was off by " + blue_diff;
@@ -73,7 +82,7 @@
   function letter_grade(percent) {
     var grade = "";
     if (percent < 60) {
-      grade += "F";
+      return "F";
     } else if (percent < 70) {
       grade += "D";
     } else if (percent < 80) {
@@ -91,10 +100,18 @@
     return grade;
   }
 
+  function valid_color(color) {
+    return /^(\d|[a-fA-F]){6}$/.test(color);
+  }
+
   function start_color_game() {
     document.getElementById("guess_dot").style.backgroundColor = "#fff";
     document.getElementById("colored_dot").style.backgroundColor = random_color();
     document.getElementById("guess_field").value = "";
+    clear_feedback();
+  }
+
+  function clear_feedback() {
     document.getElementById("actual_color").innerHTML = "Color: #??????";
     document.getElementById("your_guess").innerHTML = "Your guess:";
     document.getElementById("off_by_red").innerHTML = "";
