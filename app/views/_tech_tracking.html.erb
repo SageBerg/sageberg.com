@@ -8,94 +8,92 @@
 
   <div class="container">
     <span class="text-nowrap">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Logo</th>
-          <th>Tool</th>
-          <th><%= "Days used in the last " +
-                 ((Date.today - Date.new(2016,5,22)).to_i + 1).to_s + " days"%>
-          </th>
-          <th>Days used in the last <%=
-             [Tech.box_days, Date.today - Date.new(2016,5,21)].min.ceil %> days
-           </th>
-        </tr>
-      <thead>
-      <tbody>
-
-
-        <% @uses = Use.all %>
-        <% @tech_ids_to_uses = {} %>
-
-        <% @uses.each do |use| %>
-          <% date_string = use.created_at.year.to_s + ", " +
-                           use.created_at.month.to_s + ", " +
-                           use.created_at.day.to_s %></p>
-          <% if @tech_ids_to_uses[use.tech_id] == nil %>
-            <% @tech_ids_to_uses[use.tech_id] = Set.new [date_string] %>
-          <% else %>
-            <% @tech_ids_to_uses[use.tech_id].add(date_string) %>
-          <% end %>
-        <% end %>
-
-        <% @techs = Tech.all %>
-
-        <% @techs.each do |tech| %>
-
-          <!-- update tech.times_used based on number of associated uses -->
-          <% if @tech_ids_to_uses[tech.id] != nil &&
-                (tech.times_used == nil ||
-                @tech_ids_to_uses[tech.id].size > tech.times_used) %>
-            <% tech.times_used = @tech_ids_to_uses[tech.id].size %>
-            <% tech.save %>
-          <% end %>
-        <% end %>
-
-        <% @techs = Tech.all.order(:times_used).reverse_order %>
-
-        <% @techs.each do |tech| %>
+      <table class="table">
+        <thead>
           <tr>
-            <td>
-              <%= image_tag( tech.image_ref,
-                             :class => "tech_logo" ) %>
-            </td>
-            <td>
-              <%= tech.name %>
-            </td>
-            <td>
-              <% if @tech_ids_to_uses[tech.id] != nil %>
-                <%= @tech_ids_to_uses[tech.id].size.to_s %>
-              <% else %>
-                <%= "0" %>
-              <% end %>
-            </td>
-            <td>
-              <div class="GitHub_style_boxes">
-                <% box_count = [Tech.box_days,
-                                Date.today - Date.new(2016,5,22)].min %>
-                <% for i in 0..box_count %>
-
-                  <% day = Date.today - i %>
-                  <% day_string = day.year.to_s + ", " +
-                                  day.month.to_s + ", " +
-                                  day.day.to_s %>
-
-                  <% if @tech_ids_to_uses[tech.id] != nil &&
-                    @tech_ids_to_uses[tech.id].include?(day_string) %>
-                    <!-- TODO only use dates within last Tech.box_days days -->
-                    <div class="checked_GitHub_style_box"
-                         title=" <%= Date.today - i %>"></div>
-                  <% else %>
-                    <div class="blank_GitHub_style_box"
-                         title="<%= Date.today - i %>"></div>
-                  <% end %> <!-- end unless -->
-                <% end %> <!-- end loop -->
-              </div> <!-- end GitHub style boxes -->
-            </td>
+            <th>Logo</th>
+            <th>Tool</th>
+            <th><%= "Days used in the last " +
+                   ((Date.today - Date.new(2016,5,22)).to_i + 1).to_s + " days"
+                %>
+            </th>
+            <th>Days used in the last <%=
+               [Tech.box_days, Date.today - Date.new(2016,5,21)].min.ceil %>
+               days
+            </th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </span>
+        <thead>
+        <tbody>
+          <% @uses = Use.all %>
+          <% @tech_ids_to_uses = {} %>
+
+          <% @uses.each do |use| %>
+            <% date_string = use.created_at.year.to_s + ", " +
+                             use.created_at.month.to_s + ", " +
+                             use.created_at.day.to_s %></p>
+            <% if @tech_ids_to_uses[use.tech_id] == nil %>
+              <% @tech_ids_to_uses[use.tech_id] = Set.new [date_string] %>
+            <% else %>
+              <% @tech_ids_to_uses[use.tech_id].add(date_string) %>
+            <% end %>
+          <% end %>
+
+          <% @techs = Tech.all %>
+
+          <% @techs.each do |tech| %>
+
+            <!-- update tech.times_used based on number of associated uses -->
+            <% if @tech_ids_to_uses[tech.id] != nil &&
+                  (tech.times_used == nil ||
+                  @tech_ids_to_uses[tech.id].size > tech.times_used) %>
+              <% tech.times_used = @tech_ids_to_uses[tech.id].size %>
+              <% tech.save %>
+            <% end %>
+          <% end %>
+
+          <% @techs = Tech.all.order(:times_used).reverse_order %>
+
+          <% @techs.each do |tech| %>
+            <tr>
+              <td>
+                <%= image_tag( tech.image_ref, :class => "tech_logo" ) %>
+              </td>
+              <td>
+                <%= tech.name %>
+              </td>
+              <td>
+                <% if @tech_ids_to_uses[tech.id] != nil %>
+                  <%= @tech_ids_to_uses[tech.id].size.to_s %>
+                <% else %>
+                  <%= "0" %>
+                <% end %>
+              </td>
+              <td>
+                <div class="GitHub_style_boxes">
+                  <% box_count = [Tech.box_days,
+                                  Date.today - Date.new(2016,5,22)].min %>
+                  <% for i in 0..box_count %>
+
+                    <% day = Date.today - i %>
+                    <% day_string = day.year.to_s + ", " +
+                                    day.month.to_s + ", " +
+                                    day.day.to_s %>
+
+                    <% if @tech_ids_to_uses[tech.id] != nil &&
+                      @tech_ids_to_uses[tech.id].include?(day_string) %>
+                      <div class="checked_GitHub_style_box"
+                           title=" <%= Date.today - i %>"></div>
+                    <% else %>
+                      <div class="blank_GitHub_style_box"
+                           title="<%= Date.today - i %>"></div>
+                    <% end %> <!-- end unless -->
+                  <% end %> <!-- end loop -->
+                </div> <!-- end GitHub style boxes -->
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </span>
   </div> <!-- end container -->
 </div> <!-- end jumbotron -->
