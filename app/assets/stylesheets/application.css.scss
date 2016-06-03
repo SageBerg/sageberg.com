@@ -105,13 +105,14 @@ tr {
 .site_nav_button {
   border: 0;
   background: none;
-  box-shadow:none;
+  box-shadow: none;
   border-radius: 0px;
   background-color: #888;
   color: #fff;
   width: 20%;
-  height:64px;
+  height: 64px;
   font-size: 16px;
+  overflow: hidden;
   &:hover {
     background-color: #777;
   }
@@ -203,6 +204,10 @@ tr {
 #security_box {
   @extend .tEnd;
   background-color: #2D3047;
+}
+
+#site_header {
+  min-width: 875px;
 }
 
 #tagline {
