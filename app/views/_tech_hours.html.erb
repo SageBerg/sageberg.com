@@ -6,17 +6,16 @@
     </p>
   </div>
 
-  <span class="text-nowrap">
-    <div class="container">
+
+  <div class="container">
+    <span class="text-nowrap">
       <table class="table" style="color: #fff;">
         <% @weeks = Week.all %>
         <thead>
           <tr>
             <th>Week</th>
-            <th>Work Hours</th>
-            <th>Description</th>
-            <th>Leisure Tech Hours</th>
-            <th>Description</th>
+            <th>Work Tech Hours</th>
+            <th>Home Tech Hours</th>
             <th>Total Tech Hours</th>
           </tr>
         </thead>
@@ -30,13 +29,7 @@
                 <%= week.work_hours %>
               </td>
               <td>
-                <%= week.work_desc %>
-              </td>
-              <td>
                 <%= week.leisure_tech_hours %>
-              </td>
-              <td>
-                <%= week.leisure_desc %>
               </td>
               <td>
                 <%= + week.work_hours + week.leisure_tech_hours %>
@@ -45,6 +38,6 @@
           <% end %>
         </tbody>
       </table>
-    </div>
-  </span>
+    </span>
+  </div>
 </div>
