@@ -72,7 +72,17 @@
                 <div class="GitHub_style_boxes">
                   <% box_count = [Tech.box_days,
                                   Date.today - Date.new(2016,5,22)].min %>
-                  <% for i in 0..box_count %>
+                  <% day_of_week = 0 %>
+                  <div class="GitHub_style_week">
+                  <% for j in 0..box_count %>
+                    <% i = box_count - j %>
+                    <% if day_of_week > 6 %>
+                      <% day_of_week = 1 %>
+                      </div>
+                      <div class="GitHub_style_week">
+                    <% else %>
+                      <% day_of_week += 1 %>
+                    <% end %>
 
                     <% day = Date.today - i %>
                     <% day_string = day.year.to_s + ", " +
@@ -86,8 +96,9 @@
                     <% else %>
                       <div class="blank_GitHub_style_box"
                            title="<%= Date.today - i %>"></div>
-                    <% end %> <!-- end unless -->
+                    <% end %>
                   <% end %> <!-- end loop -->
+                  </div> <!-- end GitHub_style_week -->
                 </div> <!-- end GitHub style boxes -->
               </td>
             </tr>

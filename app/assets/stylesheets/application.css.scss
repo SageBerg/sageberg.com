@@ -68,15 +68,22 @@ tr {
 }
 
 .GitHub_style_box {
-  height: 16px;
-  width: 16px;
+  height: 11px;
+  width: 11px;
   margin: 1px;
-  display: inline-block;
-  float: right;;
+  &:hover {
+    border-style: solid;
+    border-width: 1px;
+  }
 }
 
 .GitHub_style_boxes {
+
+}
+
+.GitHub_style_week {
   float: left;
+  display: inline-block;
 }
 
 .jumbotron {
