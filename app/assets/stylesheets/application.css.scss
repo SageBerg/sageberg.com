@@ -78,12 +78,23 @@ tr {
 }
 
 .GitHub_style_boxes {
-
 }
 
 .GitHub_style_week {
   float: left;
   display: inline-block;
+  overflow: hidden;
+}
+
+.GitHub_style_week_day_label {
+  @extend .GitHub_style_box;
+  font-size: 60%;
+}
+
+.GitHub_style_week_day_labels {
+  float: left;
+  display: inline-block;
+  overflow: hidden;
 }
 
 .jumbotron {
@@ -123,6 +134,10 @@ tr {
   &:hover {
     background-color: #777;
   }
+}
+
+.table {
+  min-width: 800px;
 }
 
 .tech_logo {

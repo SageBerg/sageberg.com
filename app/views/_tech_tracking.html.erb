@@ -13,13 +13,9 @@
           <tr>
             <th>Logo</th>
             <th>Tool</th>
-            <th><%= "Days used in the last " +
-                   ((Date.today - Date.new(2016,5,22)).to_i + 1).to_s + " days"
-                %>
-            </th>
-            <th>Days used in the last <%=
-               [Tech.box_days, Date.today - Date.new(2016,5,21)].min.ceil %>
-               days
+            <th>Usage in the last <%=
+              [Tech.box_days, Date.today - Date.new(2016,5,21)].min.ceil %>
+              days
             </th>
           </tr>
         <thead>
@@ -62,16 +58,19 @@
                 <%= tech.name %>
               </td>
               <td>
-                <% if @tech_ids_to_uses[tech.id] != nil %>
-                  <%= @tech_ids_to_uses[tech.id].size.to_s %>
-                <% else %>
-                  <%= "0" %>
-                <% end %>
-              </td>
-              <td>
+
                 <div class="GitHub_style_boxes">
+                  <div class="GitHub_style_week_day_labels">
+                    <div class="GitHub_style_week_day_label"></div>
+                    <div class="GitHub_style_week_day_label">M</div>
+                    <div class="GitHub_style_week_day_label"></div>
+                    <div class="GitHub_style_week_day_label">W</div>
+                    <div class="GitHub_style_week_day_label"></div>
+                    <div class="GitHub_style_week_day_label">F</div>
+                    <div class="GitHub_style_week_day_label"></div>
+                  </div>
                   <% box_count = [Tech.box_days,
-                                  Date.today - Date.new(2016,5,22)].min %>
+                                  Date.today - Date.new(2016,5,22)].max %>
                   <% day_of_week = 0 %>
                   <div class="GitHub_style_week">
                   <% for j in 0..box_count %>
