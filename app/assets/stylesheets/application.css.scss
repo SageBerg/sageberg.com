@@ -88,7 +88,11 @@ tr {
 
 .GitHub_style_week_day_label {
   @extend .GitHub_style_box;
+  &:hover {
+    border-width: 0px;
+  }
   font-size: 60%;
+  text-align: center;
 }
 
 .GitHub_style_week_day_labels {
@@ -103,7 +107,7 @@ tr {
 }
 
 .month_labels {
-  height: 20px;
+  height: 14px;
   width: 730px;
 }
 
@@ -112,6 +116,7 @@ tr {
   height: 11px;
   margin: 1px;
   width: 11px;
+  font-size: 80%;
 }
 
 .my_iframe {

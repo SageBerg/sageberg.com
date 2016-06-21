@@ -94,8 +94,7 @@
                     <div class="GitHub_style_week_day_label">F</div>
                     <div class="GitHub_style_week_day_label"></div>
                   </div>
-                  <% box_count = [Tech.box_days,
-                                  Date.today - Date.new(2016,5,22)].max %>
+                  <% box_count = Tech.box_days %>
                   <% day_of_week = 0 %>
                   <div class="GitHub_style_week">
                   <% for j in 0..box_count %>
@@ -122,6 +121,16 @@
                            title="<%= Date.today - i %>"></div>
                     <% end %>
                   <% end %> <!-- end loop -->
+
+                  <!-- add extra days to make the year look nice -->
+                  <% j = 0 %>
+                  <% while day.saturday? == false %>
+                    <% j += 1 %>
+                    <% day = Date.today + j %>
+                    <div class="blank_GitHub_style_box"
+                         title="<%= day %>"></div>
+                  <% end %>
+
                   </div> <!-- end GitHub_style_week -->
                 </div> <!-- end GitHub style boxes -->
                 </div> <!-- end temp div -->
