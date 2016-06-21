@@ -102,6 +102,18 @@ tr {
   margin-bottom: 0;
 }
 
+.month_labels {
+  height: 20px;
+  width: 730px;
+}
+
+.month_label {
+  float: left;
+  height: 11px;
+  margin: 1px;
+  width: 11px;
+}
+
 .my_iframe {
   border-radius: 10px;
   margin-bottom: 16px;
@@ -136,14 +148,6 @@ tr {
   }
 }
 
-.table {
-  min-width: 800px;
-}
-
-.tech_logo {
-  width: 50px;
-}
-
 .tEnd {
   height: 150px;
   line-height: 150px;
@@ -151,6 +155,14 @@ tr {
   white-space: nowrap;
   text-align: center;
   color: #fff;
+}
+
+.table {
+  min-width: 800px;
+}
+
+.tech_logo {
+  width: 50px;
 }
 
 .white_text {
