@@ -1,0 +1,23 @@
+<%
+  def get_first_day_of_each_week_for_a_year
+    this_day = Date.today
+    calendar_days = 365
+    start_day = this_day - calendar_days
+    end_day = this_day
+    while start_day.sunday? == false
+      start_day -= 1
+      calendar_days += 1
+    end
+    while end_day.saturday? == false
+      end_day += 1
+      calendar_days += 1
+    end
+    weeks = []
+    index_day = start_day
+    while index_day <= end_day
+       weeks.push(index_day)
+       index_day += 7
+    end
+    return weeks
+  end
+%>

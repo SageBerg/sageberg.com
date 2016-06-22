@@ -3,23 +3,18 @@
                                      7 => "Jul", 8 => "Aug", 9 => "Sep",
                                      10 => "Oct", 11 => "Nov", 12 => "Dec"} %>
 
+<%= render file: "_calendar_building_helper" %> <!-- a bastardization of rendering -->
+<% weeks = get_first_day_of_each_week_for_a_year %>
+
 <div class="month_labels">
-  <div class="month_label"></div>
-  <% days_back = 365 %>
-  <% today = Date.today %>
-  <% prev_month = 0 %>
-  <% while days_back > 0 %>
+  <div class="month_label"></div> <!-- for formatting -->
+  <% current_month = weeks[0].month %>
+  <% for start_of_week in weeks %>
     <div class="month_label">
-      <% current_day = today - days_back %>
-      <% while current_day.monday? == false %>
-        <% current_day += 1 %>
-      <% end %>
-      <% current_month = (current_day).month %>
-      <% if prev_month != current_month and current_day.day < 20 %>
-        <%= numbers_to_month_abreviations[current_month] %>
-        <% prev_month = current_month %>
-      <% end %>
+    <% if current_month != start_of_week.month %>
+      <%= numbers_to_month_abreviations[start_of_week.month] %>
+      <% current_month = start_of_week.month %>
+    <% end %>
     </div>
-    <% days_back -= 7 %>
   <% end %>
 </div>

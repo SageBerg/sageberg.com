@@ -1,4 +1,3 @@
-
 <div class="jumbotron" id="tech_tracking">
 
   <div class="section_header">
@@ -50,6 +49,9 @@
 
           <% @techs = Tech.all.order(:times_used).reverse_order %>
 
+          <%= render file: "_calendar_building_helper" %> <!-- a bastardization of rendering -->
+          <% weeks = get_first_day_of_each_week_for_a_year %>
+
           <% @techs.each do |tech| %>
             <tr>
               <td>
@@ -59,52 +61,37 @@
                 <%= tech.name %>
               </td>
               <td>
-                <%= render file: "_month_labels" %>
+                <%= render file: "~/sageberg.com/app/views/_month_labels" %>
+
                 <div class="GitHub_style_boxes">
                   <%= render file: "~/sageberg.com/app/views/_day_labels" %>
-                  
-                  <% box_count = Tech.box_days %>
-                  <% day_of_week = 0 %>
-                  <div class="GitHub_style_week">
-                  <% for j in 0..box_count %>
-                    <% i = box_count - j %>
-                    <% if day_of_week > 6 %>
-                      <% day_of_week = 1 %>
-                      </div>
-                      <div class="GitHub_style_week">
-                    <% else %>
-                      <% day_of_week += 1 %>
-                    <% end %>
 
-                    <% day = Date.today - i %>
-                    <% day_string = day.year.to_s + ", " +
-                                    day.month.to_s + ", " +
-                                    day.day.to_s %>
+                  <% for week in weeks %>
+                    <div class="GitHub_style_week">
+                      <% for offset in 0..6 %>
+                        <% day = week + offset %>
+                        <% day_string = day.year.to_s + ", " +
+                                        day.month.to_s + ", " +
+                                        day.day.to_s %>
 
-                    <% if @tech_ids_to_uses[tech.id] != nil &&
-                      @tech_ids_to_uses[tech.id].include?(day_string) %>
-                      <div class="checked_GitHub_style_box"
-                           title=" <%= Date.today - i %>"></div>
-                    <% else %>
-                      <div class="blank_GitHub_style_box"
-                           title="<%= Date.today - i %>"></div>
-                    <% end %>
-                  <% end %> <!-- end loop -->
+                        <% if @tech_ids_to_uses[tech.id] != nil &&
+                          @tech_ids_to_uses[tech.id].include?(day_string) %>
+                          <div class="checked_GitHub_style_box"
+                               title=" <%= day %>"></div>
+                        <% else %>
+                          <div class="blank_GitHub_style_box"
+                               title="<%= day %>"></div>
+                        <% end %> <!-- end checked or unchecked logic -->
 
-                  <!-- add extra days to make the year look nice -->
-                  <% j = 0 %>
-                  <% while day.saturday? == false %>
-                    <% j += 1 %>
-                    <% day = Date.today + j %>
-                    <div class="blank_GitHub_style_box"
-                         title="<%= day %>"></div>
-                  <% end %>
-
-                  </div> <!-- end GitHub_style_week -->
+                      <% end %> <!-- end offset days loop -->
+                    </div> <!-- end week -->
+                  <% end %> <!-- end weeks loop -->
                 </div> <!-- end GitHub style boxes -->
+
               </td>
             </tr>
-          <% end %>
+
+          <% end %> <!-- end techs loop -->
         </tbody>
       </table>
     </span>
