@@ -1,7 +1,3 @@
-<% numbers_to_month_abreviations = { 1 => "Jan", 2 => "Feb", 3 => "Mar",
-                                     4 => "Apr", 5 => "May", 6 => "Jun",
-                                     7 => "Jul", 8 => "Aug", 9 => "Sep",
-                                     10 => "Oct", 11 => "Nov", 12 => "Dec"} %>
 
 <div class="jumbotron" id="tech_tracking">
 
@@ -63,37 +59,10 @@
                 <%= tech.name %>
               </td>
               <td>
-                <div> <!-- temp div -->
-                <div class="month_labels">
-                  <div class="month_label"></div>
-                  <% days_back = 365 %>
-                  <% today = Date.today %>
-                  <% prev_month = 0 %>
-                  <% while days_back > 0 %>
-                    <div class="month_label">
-                      <% current_day = today - days_back %>
-                      <% while current_day.monday? == false %>
-                        <% current_day += 1 %>
-                      <% end %>
-                      <% current_month = (current_day).month %>
-                      <% if prev_month != current_month and current_day.day < 20 %>
-                        <%= numbers_to_month_abreviations[current_month] %>
-                        <% prev_month = current_month %>
-                      <% end %>
-                    </div>
-                    <% days_back -= 7 %>
-                  <% end %>
-                </div>
+                <%= render file: "_month_labels" %>
                 <div class="GitHub_style_boxes">
-                  <div class="GitHub_style_week_day_labels">
-                    <div class="GitHub_style_week_day_label"></div>
-                    <div class="GitHub_style_week_day_label">M</div>
-                    <div class="GitHub_style_week_day_label"></div>
-                    <div class="GitHub_style_week_day_label">W</div>
-                    <div class="GitHub_style_week_day_label"></div>
-                    <div class="GitHub_style_week_day_label">F</div>
-                    <div class="GitHub_style_week_day_label"></div>
-                  </div>
+                  <%= render file: "~/sageberg.com/app/views/_day_labels" %>
+                  
                   <% box_count = Tech.box_days %>
                   <% day_of_week = 0 %>
                   <div class="GitHub_style_week">
@@ -133,7 +102,6 @@
 
                   </div> <!-- end GitHub_style_week -->
                 </div> <!-- end GitHub style boxes -->
-                </div> <!-- end temp div -->
               </td>
             </tr>
           <% end %>
