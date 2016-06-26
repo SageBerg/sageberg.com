@@ -1,0 +1,3 @@
+Feature: Hide excess techs in the tech tracking section
+Move the use updating code to its own scrip and run it nightly with crontab
+Rename the image files and migrate the teches schema to not have image_ref
