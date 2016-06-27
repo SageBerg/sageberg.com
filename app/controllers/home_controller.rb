@@ -39,10 +39,6 @@ class HomeController < ApplicationController
     return @tech_ids_to_uses
   end
 
-  def hello
-    puts "Hello, World!"
-  end
-  
   def index
   end
 
