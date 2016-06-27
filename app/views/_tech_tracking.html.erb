@@ -20,80 +20,10 @@
           </tr>
         <thead>
         <tbody>
-          <% @uses = Use.all %>
-          <% @tech_ids_to_uses = {} %>
-
-          <% @uses.each do |use| %>
-            <% date_string = use.created_at.year.to_s + ", " +
-                             use.created_at.month.to_s + ", " +
-                             use.created_at.day.to_s %></p>
-            <% if @tech_ids_to_uses[use.tech_id] == nil %>
-              <% @tech_ids_to_uses[use.tech_id] = Set.new [date_string] %>
-            <% else %>
-              <% @tech_ids_to_uses[use.tech_id].add(date_string) %>
-            <% end %>
-          <% end %>
-
-          <% @techs = Tech.all %>
-
-          <% @techs.each do |tech| %>
-
-            <!-- update tech.times_used based on number of associated uses -->
-            <% if @tech_ids_to_uses[tech.id] != nil &&
-                  (tech.times_used == nil ||
-                  @tech_ids_to_uses[tech.id].size > tech.times_used) %>
-              <% tech.times_used = @tech_ids_to_uses[tech.id].size %>
-              <% tech.save %>
-            <% end %>
-          <% end %>
-
-          <% @techs = Tech.all.order(:times_used).reverse_order %>
-
-          <%= render file: "_calendar_building_helper" %> <!-- a bastardization of rendering -->
-          <% weeks = get_first_day_of_each_week_for_a_year %>
-
-          <% @techs.each do |tech| %>
-            <tr>
-              <td>
-                <%= image_tag( tech.image_ref, :class => "tech_logo" ) %>
-              </td>
-              <td>
-                <%= tech.name %>
-              </td>
-              <td>
-                <%= render file: "~/sageberg.com/app/views/_month_labels" %>
-
-                <div class="GitHub_style_boxes">
-                  <%= render file: "~/sageberg.com/app/views/_day_labels" %>
-
-                  <% for week in weeks %>
-                    <div class="GitHub_style_week">
-                      <% for offset in 0..6 %>
-                        <% day = week + offset %>
-                        <% day_string = day.year.to_s + ", " +
-                                        day.month.to_s + ", " +
-                                        day.day.to_s %>
-
-                        <% if @tech_ids_to_uses[tech.id] != nil &&
-                          @tech_ids_to_uses[tech.id].include?(day_string) %>
-                          <div class="checked_GitHub_style_box"
-                               title=" <%= day %>"></div>
-                        <% else %>
-                          <div class="blank_GitHub_style_box"
-                               title="<%= day %>"></div>
-                        <% end %> <!-- end checked or unchecked logic -->
-
-                      <% end %> <!-- end offset days loop -->
-                    </div> <!-- end week -->
-                  <% end %> <!-- end weeks loop -->
-                </div> <!-- end GitHub style boxes -->
-
-              </td>
-            </tr>
-
-          <% end %> <!-- end techs loop -->
+          <%= render file: "_tech_calendars" %>
         </tbody>
       </table>
     </span>
+    <!-- <button id="show_more_techs" onclick="">Show more tools I use</button> -->
   </div> <!-- end container -->
 </div> <!-- end jumbotron -->
