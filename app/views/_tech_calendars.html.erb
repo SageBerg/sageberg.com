@@ -1,0 +1,39 @@
+<% @weeks = get_first_day_of_each_week_for_a_year %>
+<% @tech_ids_to_uses = get_tech_ids_to_uses %>
+<% @techs = Tech.all.order(:times_used).reverse_order %>
+
+<% @techs.each do |tech| %>
+  <tr>
+    <td>
+      <%= image_tag( tech.image_ref, :class => "tech_logo" ) %>
+    </td>
+    <td>
+      <%= tech.name %>
+    </td>
+    <td>
+      <%= render file: "_month_labels" %>
+      <div class="GitHub_style_boxes">
+        <%= render file: "_day_labels" %>
+        <% for week in @weeks %>
+          <div class="GitHub_style_week">
+            <% for offset in 0..6 %>
+              <% day = week + offset %>
+              <% day_string = day.year.to_s + ", " +
+                              day.month.to_s + ", " +
+                              day.day.to_s %>
+
+              <% if @tech_ids_to_uses[tech.id] != nil &&
+                @tech_ids_to_uses[tech.id].include?(day_string) %>
+                <div class="checked_GitHub_style_box"
+                     title=" <%= day %>"></div>
+              <% else %>
+                <div class="blank_GitHub_style_box"
+                     title="<%= day %>"></div>
+              <% end %> <!-- end checked or unchecked logic -->
+            <% end %> <!-- end offset days loop -->
+          </div> <!-- end week -->
+        <% end %> <!-- end weeks loop -->
+      </div> <!-- end GitHub style boxes -->
+    </td>
+  </tr>
+<% end %> <!-- end techs loop -->
