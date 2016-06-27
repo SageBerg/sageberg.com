@@ -7,6 +7,8 @@
 #     and each will have their created_at attribute set to today, since the
 #     days_back argument is 0.
 
+require_relative 'update_teches_times_used.rb'
+
 def add_uses days_back
   use_hash = Hash.new
   @techs = Tech.all
@@ -24,3 +26,4 @@ def add_uses days_back
 end
 
 add_uses ARGV[0]
+update_teches_times_used
