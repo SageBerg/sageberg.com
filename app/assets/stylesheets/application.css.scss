@@ -18,6 +18,7 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+$darkened_my_blue: #0088ee;
 $my_blue: #0099ff;
 $Atom_grey: #282C34;
 
@@ -243,6 +244,21 @@ tr {
 #security_box {
   @extend .tEnd;
   background-color: #2D3047;
+}
+
+#show_more_techs {
+  border: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0px;
+  background-color: $my_blue;
+  color: #fff;
+  font-size: 16px;
+  height: 32px;
+  width: 256px;
+  &:hover {
+    background-color: $darkened_my_blue;
+  }
 }
 
 #site_header {
