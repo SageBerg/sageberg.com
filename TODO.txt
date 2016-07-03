@@ -1,4 +1,7 @@
 Feature: Hide excess techs in the tech tracking section
-Move the use updating code to its own scrip and run it when add_uses runs
 Rename the image files and migrate the teches schema to not have image_ref
 Do a refactor with a focus on renaming things
+Make the tables work look right on mobile
+Gray out the boxes before the start of tracking
+Replace the tech weeks section data with a pretty graph
+Fix the nav buttons for Mac displays
