@@ -102,6 +102,13 @@ tr {
   overflow: hidden;
 }
 
+.hours_bar {
+  background-color: $my_blue;
+  border-radius: 4px;
+  height: 24px;
+  padding: 2px;
+}
+
 .jumbotron {
   background-color: #fff;
   margin-bottom: 0;

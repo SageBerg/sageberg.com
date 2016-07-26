@@ -1,11 +1,8 @@
 <div class="jumbotron" id="tech_hours">
   <div class="section_header">
     <h2 class="section_title">Tech Hours</h2>
-    <p class="white_text">I'm also tracking how many hours I spend doing
-      developer related stuff each week.
-    </p>
+    <p class="white_text">I'm also tracking my software development hours.</p>
   </div>
-
 
   <div class="container">
     <span class="text-nowrap">
@@ -24,7 +21,10 @@
                 <%= week.name %>
               </td>
               <td>
-                <%= + week.work_hours + week.leisure_tech_hours %>
+                <% total_hours = week.work_hours + week.leisure_tech_hours %>
+                <div class="hours_bar" style="width:<%= total_hours.round * 10 %>px;">
+                  <%= total_hours %>
+                </div>
               </td>
             </tr>
           <% end %>
