@@ -44,9 +44,9 @@ tr {
 
 .checked_GitHub_style_box {
   @extend .GitHub_style_box;
-  background-color: #0099ff;
+  background-color: #09f;
   &:hover {
-    background-color: #0088ee;
+    background-color: #08e;
   }
 }
 
@@ -56,7 +56,7 @@ tr {
 }
 
 .color_game_header {
-  color: white;
+  color: #fff;
 }
 
 .dot {
@@ -198,6 +198,10 @@ tr {
 
 #colored_dot {
   @extend .dot;
+}
+
+#colors_game {
+  background-color: #fff;
 }
 
 #data_box {
